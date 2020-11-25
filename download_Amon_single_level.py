@@ -22,6 +22,7 @@ import cdsapi
 import glob
 
 path = '/home/franzihe/nird_franzihe/data/ERA5/'
+path = '/home/franzihe/nird_ERA5/'
 
 form = 'netcdf' # 'grib'
 
@@ -74,6 +75,7 @@ for keys, var in variable.items():
                     'year': available_years[years],
                     'month': available_month[months],
                     'time': '00:00',
+#                    'grid': '0.25/0.25',        # Regrid from the default grid to a regular lat/lon with specified resolution. The first number is east-west resolution (longitude) and the second is north-south (latitude).
                     'format': form,
                     'stream': 'moda'
                 },
