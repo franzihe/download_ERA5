@@ -38,14 +38,16 @@ chunks={'time' : 10,}
 client
 # -
 
-_path = '/home/franzihe/nird_franzihe/data/ERA5/'
+_path = '/home/franzihe/nird_NS9600K/franzihe/data/ERA5/3_hourly/'
 var = 'sf'
+var = 'tp'
 
 # +
-fn_list = [ff for ff in glob(_path + var + '_Amon_*.nc') if (int(ff[-9:-5])>1985)]
+fn_list = [ff for ff in glob(_path + var + '_3hourly_*.nc') if (int(ff[-9:-5])>= 2008)]
 fn_list.sort()
 
 if len(fn_list) > 0:
+
     fn = xr.open_mfdataset(fn_list, chunks = chunks, 
                            parallel = True, 
                            use_cftime = False,
@@ -53,12 +55,10 @@ if len(fn_list) > 0:
 #    fn['time'] = fn.indexes['time'].to_datetimeindex()
 # -
 
-fn
-
 f,axsm = plt.subplots(2,2, figsize = [10,7], subplot_kw={'projection' : ccrs.PlateCarree()})
 axs = axsm.flatten()
-for sea, ax in zip(fn.sf.groupby('time.season').sum('time').season, axs.flatten()):
-    im = fn.sf.sel(time = (fn.sf['time.season'] == sea),).mean('time', keep_attrs = True).plot.pcolormesh(ax = ax,
+for sea, ax in zip(fn.tp.groupby('time.season').sum('time').season, axs.flatten()):
+    im = fn.tp.sel(time = (fn.tp['time.season'] == sea),).mean('time', keep_attrs = True).plot.pcolormesh(ax = ax,
                                                                                                           transform = ccrs.PlateCarree(),
                                                                                                           robust = True,
                                                                                                           add_colorbar = False)
@@ -69,7 +69,7 @@ cbar_ax = f.add_axes([0.85, 0.15, 0.025, 0.7])
 f.colorbar(im, 
                cax=cbar_ax, 
                extend = 'both',
-               format='%.0e').ax.set_ylabel(fn.sf.attrs['long_name'] + ' [' + fn.sf.attrs['units'] + ']')
+               format='%.0e').ax.set_ylabel(fn.tp.attrs['long_name'] + ' [' + fn.tp.attrs['units'] + ']')
 plt.tight_layout()
 
 
