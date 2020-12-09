@@ -39,8 +39,11 @@ client
 # -
 
 _path = '/home/franzihe/nird_NS9600K/franzihe/data/ERA5/3_hourly/'
+_path = '/home/franzihe/astra_franzihe/Data/ERA5/1deg/'
 var = 'sf'
-var = 'tp'
+#var = 'tp'
+
+xr.open_dataset('/home/franzihe/astra_franzihe/Data/ERA5/1deg/sf_Amon_ERA5_1deg_199001_199012.nc').time
 
 # +
 fn_list = [ff for ff in glob(_path + var + '_3hourly_*.nc') if (int(ff[-9:-5])>= 2008)]
@@ -54,6 +57,8 @@ if len(fn_list) > 0:
                           ) 
 #    fn['time'] = fn.indexes['time'].to_datetimeindex()
 # -
+
+_path + var 
 
 f,axsm = plt.subplots(2,2, figsize = [10,7], subplot_kw={'projection' : ccrs.PlateCarree()})
 axs = axsm.flatten()
