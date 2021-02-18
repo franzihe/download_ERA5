@@ -1,8 +1,13 @@
-# Regrid global data
+# Download ERA5 reanalysis
+Scripts to download montly means from ERA5 in pressure and single levels. 
+Inspired by ECMWFs _How to download ERA5_ 
 
+https://confluence.ecmwf.int/display/CKB/How+to+download+ERA5
 
 ## Variables
+...can be chosen from a list 
 
+https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation 
 
 For my study:
 - In pressure levels:
@@ -15,16 +20,25 @@ For my study:
   - _msr  : mean_snowfall_rate_
   - _sf   : snowfall_
 
+## Forms
+ERA5 monthly averaged data on pressure levels from 1979 to present: 
+
+https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels-monthly-means?tab=form
+
+ERA5 monthly averaged data on single levels from 1979 to present: 
+
+https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels-monthly-means?tab=form
 
 ## Necessary Python 3.7 packages
 - jupyter 
 - jupyterlab
 - cdsapi
-- numpy 
-- xarray
 - glob
-- os
-- xesmf
+- dask
+- xarray
+- matplotlib
+- cartopy
+- numpy
 
 ## How to cite
-Hellmuth, Franziska, (2021), Regrid global data, University of Oslo, Oslo, Norway. Contact: franziska.hellmuth@geo.uio.no
+Hellmuth, Franziska, (2020), Download ERA5, University of Oslo, Oslo, Norway. Contact: franziska.hellmuth@geo.uio.no
