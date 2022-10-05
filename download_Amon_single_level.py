@@ -61,11 +61,12 @@ available_years = {
 }
 
 variable = {
-    # "2t": "2m_temperature",
-    # "msr": "mean_snowfall_rate",
-    # "sf": "snowfall",
-    # "tclw": "total_column_cloud_liquid_water",
-    "tciw": "total_column_cloud_ice_water"
+    # '2t':   '2m_temperature',
+    # 'msr'  :'mean_snowfall_rate',
+    # 'sf'   :'snowfall',
+    # 'tclw' : 'total_column_cloud_liquid_water',
+    # 'tciw' : 'Total column cloud ice water'
+    "tp": "total_precipitation"
 }
 
 counter = 0
@@ -96,7 +97,6 @@ for keys, var in variable.items():
                 print("Have downloaded in total : " + str(counter) + " files")
             else:
                 c = cdsapi.Client()
-
                 c.retrieve(
                     "reanalysis-era5-single-levels-monthly-means",
                     {
